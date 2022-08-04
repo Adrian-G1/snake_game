@@ -1,6 +1,7 @@
-from tracemalloc import start
-from turtle import Screen, Turtle
+from turtle import Screen
 from time import sleep
+from food import Food
+from scoreboard import Scoreboard
 from snake import Snake
 
 
@@ -12,6 +13,8 @@ screen.tracer(0)
 
 
 snake = Snake()
+food = Food()
+score = Scoreboard()
 
 
 screen.listen()
@@ -25,8 +28,13 @@ game_is_on = True
 while game_is_on:
     screen.update()
     sleep(0.1)
-
     snake.move()
+    
+    # Detect collision with food
+    # Use distance() from Turtle
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        score.increase_score()
 
 
 screen.exitonclick()
