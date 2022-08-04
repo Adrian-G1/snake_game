@@ -16,11 +16,17 @@ class Snake(Turtle):
     
     def create_snake(self):
         for position in STARTING_POSITIONS:
-            body = Turtle(shape='square')
-            body.color('white')
-            body.penup()
-            body.goto(position)
-            self.snake_body.append(body)
+            self.add_body(position)
+            
+    def add_body(self, position):
+        body = Turtle(shape='square')
+        body.color('white')
+        body.penup()
+        body.goto(position)
+        self.snake_body.append(body) 
+    
+    def extend(self):
+        self.add_body(self.snake_body[-1].position())
 
     
     def move(self):
