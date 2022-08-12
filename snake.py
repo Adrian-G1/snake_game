@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 STARTING_POSITIONS= [(0,0), (-20,0), (-40,0)]
-MOVE_DISTANCE = 20
+MOVE_DISTANCE = 15
 UP = 90
 DOWN = 270
 LEFT = 180
@@ -23,7 +23,14 @@ class Snake(Turtle):
         body.color('white')
         body.penup()
         body.goto(position)
-        self.snake_body.append(body) 
+        self.snake_body.append(body)
+        
+    def reset(self):
+        for body in self.snake_body:
+            body.goto(x=1000, y=1000)
+        self.snake_body.clear()
+        self.create_snake()
+        self.head = self.snake_body[0]
     
     def extend(self):
         self.add_body(self.snake_body[-1].position())
